@@ -662,20 +662,21 @@ def main(args):
                         if show_LL_text:
                             texts = [str(int(n)) for n in bessel_order]
                         tags = [m, bessel_order]
-                        #color = ll_colors[abs(m)%len(ll_colors)]
-                        bessel_colors = ["darkblue","greenyellow"]
-                        color = [bessel_colors[n%2] for n in bessel_order]
+                        color = ll_colors[abs(m)%len(ll_colors)]
+                        #bessel_colors = ["cyan","greenyellow"]
+                        ellipse_alpha = [n%2*1.0 for n in bessel_order]
                         for f in figs_image:
                             if show_LL_text: 
                                 text_labels = f.text(x, y, y_offset=2, text=texts, text_color=color, text_baseline="middle", text_align="center")
                                 text_labels.tags = tags
                                 fig_ellipses.append(text_labels)
                             else:
-                                ellipses = f.ellipse(x, y, width=width, height=height, fill_color=color, fill_alpha=1, line_width=0)
+                                ellipses = f.ellipse(x, y, width=width, height=height, line_color=color, fill_color=color, fill_alpha=ellipse_alpha, line_width=1.0)
                                 ellipses.tags = tags
                                 fig_ellipses.append(ellipses)
                 else:
                     st.warning(f"No off-equator layer lines to draw for Pitch={pitch:.2f} Csym={csym} combinations. Consider increasing Pitch or reducing Csym")
+
 
             #from bokeh.models import CustomJS
             #from bokeh.events import MouseEnter
