@@ -48,6 +48,9 @@ from math import fmod
 from os import getpid
 from urllib.parse import parse_qs
 
+import numpy as np
+np.bool8 = bool  # fix for bokeh 2.4.3
+
 from bokeh.events import MouseMove, MouseEnter, DoubleTap
 from bokeh.io import export_png
 from bokeh.layouts import gridplot, column, layout
@@ -59,7 +62,6 @@ from finufft import nufft2d2
 
 import mrcfile
 
-import numpy as np
 from numba import jit, set_num_threads, prange
 
 import pandas as pd
@@ -178,7 +180,7 @@ def main(args):
     st.title(title)
 
     st.web.server.server_util.MESSAGE_SIZE_LIMIT = 2e8  # default is 5e7 (50MB)
-    st.elements.utils._shown_default_value_warning = True
+    st.elements.lib.policies._shown_default_value_warning = True
 
     if len(st.session_state)<1:  # only run once at the start of the session
         st.session_state['csym'] = 1
