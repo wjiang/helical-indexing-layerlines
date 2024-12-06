@@ -199,10 +199,12 @@ def main(args):
     st.markdown("""
     <style>
         .block-container {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
+            padding-left: 5px;
+            padding-top: 0;
+            margin: 0
+        }
+        .stAppHeader {
+            height: 0;
         }
     </style>
     """, unsafe_allow_html=True)
